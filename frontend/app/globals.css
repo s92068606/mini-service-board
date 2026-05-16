@@ -3,9 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -20,7 +17,79 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+
+:root {
+  --btn-primary: #0f172a; /* minimal black */
+  --btn-primary-hover: #111827; /* slightly lighter on hover */
+  --btn-secondary: #0f172a; /* minimal black (navbar buttons) */
+  --btn-secondary-hover: #111827;
+  --btn-highlight-shadow: 0 8px 24px rgba(2,6,23,0.18);
+  --btn-danger: #ef4444; /* red-500 */
+  --card-bg: #ffffff;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1rem }
+
+.card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 8px 24px rgba(15,23,42,0.06); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .5rem .85rem; border-radius: .6rem; font-weight: 600; cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+.btn-primary {
+  background: var(--btn-primary);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.btn-primary:hover {
+  background: var(--btn-primary-hover);
+  box-shadow: var(--btn-highlight-shadow);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: var(--btn-secondary);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.btn-secondary:hover {
+  background: var(--btn-secondary-hover);
+  box-shadow: var(--btn-highlight-shadow);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: var(--btn-secondary);
+  border: 1px solid var(--btn-secondary);
+}
+.btn-outline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.14), transparent 18%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08), transparent 12%);
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+.btn-outline:hover {
+  background: var(--btn-secondary);
+  color: white;
+  box-shadow: var(--btn-highlight-shadow);
+  transform: translateY(-1px);
+}
+.btn-outline:hover::after {
+  opacity: 1;
+}
+.btn-ghost { background: transparent; border: 1px solid rgba(0,0,0,0.06); color: inherit }
+.btn-danger { background: var(--btn-danger); color: white }
+
+.muted { color: #6b7280 }
+

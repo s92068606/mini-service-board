@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const protect = require("../middleware/authMiddleware");
 
 const {
   createJob,
@@ -9,10 +10,17 @@ const {
   deleteJob,
 } = require("../controllers/jobController");
 
+// CREATE - public
 router.post("/", createJob);
-router.get("/", getJobs);
-router.get("/:id", getJobById);
-router.put("/:id", updateJob);
-router.delete("/:id", deleteJob);
+
+// READ - protected: only logged-in users can view requests
+router.get("/", protect, getJobs);
+router.get("/:id", protect, getJobById);
+
+// UPDATE (status only) - protected
+router.patch("/:id", protect, updateJob);
+
+// DELETE - protected
+router.delete("/:id", protect, deleteJob);
 
 module.exports = router;
