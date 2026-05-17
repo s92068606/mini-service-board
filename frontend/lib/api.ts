@@ -19,4 +19,16 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
+// Global response handler: on 401 remove token and notify app
+API.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err?.response?.status === 401 && typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      window.dispatchEvent(new Event("authChange"));
+    }
+    return Promise.reject(err);
+  }
+);
+
 export default API;

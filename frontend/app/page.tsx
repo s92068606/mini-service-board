@@ -30,7 +30,7 @@ export default function Home() {
       setJobs(res.data);
     } catch (err: any) {
       if (err?.response?.status === 401) {
-        setJobs([]);
+        // Keep any already-loaded jobs visible, but show a login prompt.
         setNeedsLogin(true);
       } else {
         console.error(err);
@@ -40,6 +40,10 @@ export default function Home() {
 
   useEffect(() => {
     fetchJobs();
+    const onAuthChange = () => fetchJobs(filter, search);
+    window.addEventListener("authChange", onAuthChange);
+
+    return () => window.removeEventListener("authChange", onAuthChange);
   }, []);
 
   return (
