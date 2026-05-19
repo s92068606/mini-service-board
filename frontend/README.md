@@ -47,3 +47,30 @@ Built as part of a Full-Stack Developer Intern assessment.
 - Status badges
 
 ---
+# 📁 Project Structure
+/backend → Express API server
+/frontend → Next.js application
+---
+
+# ⚙️ Setup Instructions
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/your-username/service-board.git
+cd service-board
+
+---
+# Backend Setup
+cd backend
+npm install
+
+▶️ Run Instructions
+
+Start Backend
+cd backend
+npm run dev
+
+Start Frontend
+cd frontend
+npm run dev
